@@ -1,11 +1,130 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/global.css';
+import 'remixicon/fonts/remixicon.css';
 ---
-
 <Layout>
-	<Welcome />
+	<div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
+		<div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"></div>
+	</div>
+
+	<header class="flex justify-center items-center h-screen">
+		<nav class="w-[400px] h-18 bg-white relative flex justify-center items-center rounded-xl navegation">
+			<ul class="flex w-[350px] [&>li]:flex [&>li]:size-18 [&>li]:z-1 [&>li>a]:relative [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:items-center [&>li>a]:flex-col [&>li>a]:w-full [&>li>a]:text-center [&>li>a]:gap-1 [&>li>a]:text-gray-500 [&>li>a]:hover:text-blue-500 [&>li>a]:transition-colors [&>li>a]:duration-300 [&>li>a>span>ion-icon]:relative [&>li>a>span>ion-icon]:block [&>li>a>span>ion-icon]:leading-72 [&>li>a>span>ion-icon]:text-center [&>li>a>span]:duration-500 [&>li>a>span.icon]:text-2xl [&>li>a>span.text]:text-lg [&>li>a>span.text]:font-serif [&>li>a>span>ion-icon]:text-black [&>li>a>.text]:absolute [&>li>a>.text]:opacity-0">
+
+				<li class="list active">
+					<a href="#">
+						<span class="icon"><ion-icon name="home-outline"></ion-icon></span> 
+						<span class="text">Home</span>   
+					</a>
+				</li>
+
+				<li class="list">
+					<a href="#">
+						<span class="icon"><ion-icon name="person-outline"></ion-icon></span> 
+						<span class="text">Profile</span>   
+					</a>
+				</li>
+
+				<li class="list">
+					<a href="#">
+						<span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span> 
+						<span class="text">Message</span>   
+					</a>
+				</li>
+
+				<li class="list">
+					<a href="#">
+						<span class="icon"><ion-icon name="image-outline"></ion-icon></span> 
+						<span class="text">Photos</span>   
+					</a>
+				</li>
+
+				<li class="list">
+					<a href="#">
+						<span class="icon"><ion-icon name="settings-outline"></ion-icon></span> 
+						<span class="text">Settings</span>   
+					</a>
+				</li>
+
+				<div class="indicador absolute size-18 bg-[#57bdd4] rounded-full border-6 duration-500 border-[#E2F4FF] top-[-50%]"></div>
+			</ul>
+		</nav>
+	</header>
+	
 </Layout>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module">
+	const list = document.querySelectorAll('.list');
+
+	function activeLink(event) {
+		list.forEach(item => item.classList.remove('active'));
+		event.currentTarget.classList.add('active');
+	}
+
+	list.forEach(item => 
+		item.addEventListener('click', activeLink)
+	);
+</script>
+
+<style>
+	.navegation ul li.active a .icon {
+		transform: translateY(-35px);
+	}
+
+	.navegation ul li.active a .icon ion-icon {
+		color: white; /* icono blanco */
+        font-size: larger;
+	}
+
+	.navegation ul li.active a .text {
+		opacity: 1;
+		transform: translateY(10px);
+	}
+
+	.indicador::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: -22.5px;
+		width: 20px;
+		height: 20px;
+		background: white;
+		border-top-right-radius: 20px;
+		box-shadow: 0px -10px 0 0 #E2F4FF;
+	}
+
+	.indicador::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: -22.5px;
+		width: 20px;
+		height: 20px;
+		background: white;
+		border-top-left-radius: 20px;
+		box-shadow: 0px -10px 0 0 #E2F4FF;
+	}
+
+	li:nth-child(1).active ~ .indicador {
+		transform: translateX(calc(70px * 0));
+	}
+
+	li:nth-child(2).active ~ .indicador {
+		transform: translateX(calc(70px * 1));
+	}
+
+	li:nth-child(3).active ~ .indicador {
+		transform: translateX(calc(70px * 2));
+	}
+
+	li:nth-child(4).active ~ .indicador {
+		transform: translateX(calc(70px * 3));
+	}
+
+	li:nth-child(5).active ~ .indicador {
+		transform: translateX(calc(70px * 4));
+	}
+</style>
