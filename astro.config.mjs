@@ -14,5 +14,5 @@ export default defineConfig({
   },
 
   integrations: [svelte(), react()],
-  output: 'server',
+ 
 });
